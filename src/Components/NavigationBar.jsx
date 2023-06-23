@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Navbar, MobileNav, Typography, IconButton } from "@material-tailwind/react";
+import { Navbar, MobileNav, Typography, IconButton, NavbarProps, Collapse } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 
 export default function NavigationBar() {
@@ -17,9 +17,8 @@ export default function NavigationBar() {
         </Link>
       </Typography>
       <Typography>
-        {" "}
-        <Link to={"/pokeDetail"} className="flex items-center">
-          Detail
+        <Link to={"/ownedPokemon"} className="flex items-center">
+          Owned Pokemon
         </Link>
       </Typography>
     </ul>
@@ -28,8 +27,8 @@ export default function NavigationBar() {
   return (
     <Navbar className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-        <Typography as="a" href="#" className="mr-4 cursor-pointer py-1.5 font-medium">
-          Material Tailwind
+        <Typography to={"/"} className="mr-4 cursor-pointer py-1.5 font-medium">
+          Pokemon
         </Typography>
         <div className="hidden lg:block">{navList}</div>
 
@@ -45,9 +44,9 @@ export default function NavigationBar() {
           )}
         </IconButton>
       </div>
-      <MobileNav open={openNav}>
+      <Collapse open={openNav}>
         <div className="container mx-auto">{navList}</div>
-      </MobileNav>
+      </Collapse>
     </Navbar>
   );
 }
