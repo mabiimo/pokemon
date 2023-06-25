@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -9,10 +9,11 @@ import { CollectionContext } from "../../Helper/CollectionContext";
 
 export default function Carousel() {
   const [pokemonList, setPokemonList] = useState([]);
+  const slideRef = useRef(null);
 
   useEffect(() => {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=10")
+      .get("https://pokeapi.co/api/v2/pokemon?limit=50")
       .then((response) => {
         setPokemonList(response.data.results);
       })
@@ -22,21 +23,41 @@ export default function Carousel() {
   }, []);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
 
+  const prevSlide = () => {
+    if (slideRef.current) {
+      slideRef.current.slickPrev();
+    }
+  };
+
+  const nextSlide = () => {
+    if (slideRef.current) {
+      slideRef.current.slickNext();
+    }
+  };
+
   return (
     <div>
       <div className="items-center justify-center rounded-xl text-center">
-        <Slider {...settings} className="overflow-hidden">
+        <Slider ref={slideRef} {...settings} className="overflow-hidden">
           {pokemonList.map((pokemon, index) => (
             <Slide key={index} pokemon={pokemon} />
           ))}
         </Slider>
+      </div>
+      <div className=" justify-between flex p-4">
+        <button onClick={prevSlide} className="p-5 rounded-xl bg-white bg-opacity-20 hover:bg-blue-gray-500 mr-2 md:mr-4">
+          Previous
+        </button>
+        <button onClick={nextSlide} className="p-5 rounded-xl bg-white bg-opacity-20 hover:bg-blue-gray-500 ml-2 md:ml-4">
+          Next
+        </button>
       </div>
     </div>
   );
