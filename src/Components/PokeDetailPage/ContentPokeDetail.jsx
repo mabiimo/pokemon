@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { CollectionContext } from "../../Helper/CollectionContext";
 
 export default function ContentPokeDetail() {
+  const { addToCollection } = useContext(CollectionContext);
   const navigate = useNavigate();
   const { pokemonName } = useParams();
   const [pokemonData, setPokemonData] = useState(null);
@@ -26,11 +29,22 @@ export default function ContentPokeDetail() {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  const handleAddToCollection = () => {
+    addToCollection(pokemonData);
+    Swal.fire({ title: "Good job!", text: "Anda berhasil Menyimpan Pokemon kesukaan Anda", timer: 2000, icon: "success" });
+  };
+
   return (
     <div>
-      <button onClick={handleGoBack} className="cursor-pointer bg-white bg-opacity-20 rounded-lg text-white font-bold py-2 px-4 mb-4 hover:bg-blue-gray-100">
-        Back
-      </button>
+      <div className="flex justify-between">
+        <button onClick={handleGoBack} className="cursor-pointer bg-white bg-opacity-20 rounded-lg text-white font-bold py-2 px-4 mb-4 hover:bg-blue-gray-100">
+          Back
+        </button>
+        <button onClick={handleAddToCollection} className="cursor-pointer bg-white bg-opacity-20 rounded-lg text-white font-bold py-2 px-4 mb-4 hover:bg-blue-gray-100">
+          Tambahkan Pokemon
+        </button>
+      </div>
+
       {pokemonData ? (
         <div className="text-white">
           <h1 className="text-2xl font-bold mb-4">Detail Page - {pokemonData.name}</h1>
