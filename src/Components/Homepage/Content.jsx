@@ -7,7 +7,7 @@ import { BsPlusCircleFill } from "react-icons/bs";
 import { RiInformationFill } from "react-icons/ri";
 
 export default function Content() {
-  const [pokemonList, setPokemonList] = useState([]);
+  const [pokemonList, setPokemonList] = useState([10]);
 
   useEffect(() => {
     axios

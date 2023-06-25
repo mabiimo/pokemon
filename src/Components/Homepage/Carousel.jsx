@@ -115,7 +115,7 @@ function Slide({ pokemon }) {
   }
 
   return (
-    <div style={{ backgroundColor: `rgba(38, 38, 38, 1)`, backgroundImage: backgroundColor }} className="p-20 cursor-pointer ">
+    <div style={{ backgroundColor: `rgba(38, 38, 38, 1)`, backgroundImage: backgroundColor }} className="p-20 cursor-pointer">
       <div className="flex items-center justify-center flex-col">
         <img src={data.sprites.front_default} alt={data.name} className="mx-auto w-36 h-36" />
         <h2 className="text-xl font-bold text-gray-200 mt-4">{capitalizeFirstLetter(data.name)}</h2>
