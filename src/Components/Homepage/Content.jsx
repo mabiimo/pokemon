@@ -22,7 +22,7 @@ export default function Content() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4 text-white items-center justify-start flex my-5">Pokemon List</h1>
+      <h1 className="text-2xl font-bold mb-4 text-white items-center justify-start flex ">Pokemon List</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {pokemonList.map((pokemon, index) => (
           <Card key={index} pokemon={pokemon} />
@@ -33,18 +33,8 @@ export default function Content() {
 }
 
 function Card({ pokemon }) {
-  const [hovered, setHovered] = useState(false);
-
   const { addToCollection } = useContext(CollectionContext);
   const [data, setData] = useState(null);
-
-  const handleMouseEnter = () => {
-    setHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setHovered(false);
-  };
 
   const handleAddToCollection = () => {
     addToCollection(data);
@@ -81,69 +71,71 @@ function Card({ pokemon }) {
   if (data.types.length > 0) {
     const type = data.types[0].type.name;
     if (type === "grass") {
-      backgroundColor = "linear-gradient(to top, #aedd37, #9ecd89)";
+      backgroundColor = "linear-gradient(to top, rgba(	38, 38, 38, 1), rgba(174, 221, 55), rgba(158, 205, 137))";
     } else if (type === "fire") {
-      backgroundColor = "linear-gradient(to top, #d61101, #fd9204)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(214, 17, 1), rgba(253, 146, 4))";
     } else if (type === "water") {
-      backgroundColor = "linear-gradient(to top, #0091fe, #03ccfa)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(0, 145, 254), rgba(3, 204, 250))";
     } else if (type === "bug") {
-      backgroundColor = "linear-gradient(to top, #3b9950, #75ca88)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(59, 153, 80), rgba(117, 202, 136))";
     } else if (type === "normal") {
-      backgroundColor = "linear-gradient(to top, #ca98a7,#d6b0bb)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(202, 152, 167), rgba(214, 176, 187))";
     } else if (type === "ground") {
-      backgroundColor = "linear-gradient(to top, #a9702c, #d0934a)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(169, 112, 44), rgba(208, 147, 74))";
     } else if (type === "poison") {
-      backgroundColor = "linear-gradient(to top, #9b69d9, #b28ce2)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(155, 105, 217), rgba(178, 140, 226))";
     } else if (type === "electric") {
-      backgroundColor = "linear-gradient(to top, #fbfb72, #fcfc93)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(251, 251, 114), rgba(252, 252, 147))";
     } else if (type === "fairy") {
-      backgroundColor = "linear-gradient(to top, #ea1369, #f0488b)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(234, 19, 105), rgba(240, 72, 139))";
     } else if (type === "fighting") {
-      backgroundColor = "linear-gradient(to top, #ea643e, #ef886b)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(234, 100, 62), rgba(239, 136, 107))";
     } else if (type === "psychic") {
-      backgroundColor = "linear-gradient(to top, #f81c91, #fa50aa)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(248, 28, 145), rgba(250, 80, 170))";
     } else if (type === "dark") {
-      backgroundColor = "linear-gradient(to top, #5a5979, #7b7a9d)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(90, 89, 121), rgba(123, 122, 157))";
     } else if (type === "dragon") {
-      backgroundColor = "linear-gradient(to top, #62c9db , #86d5e3)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(98, 201, 219), rgba(134, 213, 227))";
     } else if (type === "flying") {
-      backgroundColor = "linear-gradient(to top, #93b2c7, #acc4d4)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(147, 178, 199), rgba(172, 196, 212))";
     } else if (type === "ghost") {
-      backgroundColor = "linear-gradient(to top, #906790, #ab89ab)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(144, 103, 144), rgba(171, 137, 171))";
     } else if (type === "ice") {
-      backgroundColor = "linear-gradient(to top, #d8f0fa, #e1f3fb)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(216, 240, 250), rgba(225, 243, 251))";
     } else if (type === "rock") {
-      backgroundColor = "linear-gradient(to top, #8b3e21, #ca5a30)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(139, 62, 33), rgba(202, 90, 48))";
     } else if (type === "steel") {
-      backgroundColor = "linear-gradient(to top, #42bd94,#9eddc8)";
+      backgroundColor = "linear-gradient(to top,rgba(38, 38, 38, 1), rgba(66, 189, 148), rgba(158, 221, 200))";
     } else {
-      backgroundColor = "#f9f9f9";
+      backgroundColor = "rgba(249, 249, 249, 0.8)";
     }
   }
+
   return (
-    <div className="mb-14">
-      <div
-        style={{ backgroundImage: backgroundColor }}
-        className={`container items-center justify-center p-10 rounded-xl text-center relative transition-colors ${hovered ? "hover:bg-blue-gray-100" : ""}`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <>
-          <Link to={`/pokeDetail/${data.name}`} className="absolute left-0 top-0">
-            <button type="button" className="p-5 rounded-br-xl rounded-tl-xl hover:bg-blue-gray-100">
-              <RiInformationFill size={30} />
-            </button>
-          </Link>
+    <div className="mb-5">
+      <div style={{ backgroundColor: `rgba(0, 0, 0, 0.2)`, backgroundImage: backgroundColor }} className="container items-center justify-center px-10 py-7 rounded-xl text-center relative">
+        <img src={data.sprites.front_default} alt={data.name} className="w-full" />
+        <div className="flex items-center justify-between">
+          <div className="text-left">
+            <h2 className=" font-bold text-gray-200 text-xl">{capitalizeFirstLetter(data.name)}</h2>
+            <h2 className="text-[13px] font-light text-gray-200">Weight : {data.weight}</h2>
+          </div>
+          <div className="flex gap-2">
+            <Link to={`/pokeDetail/${data.name}`}>
+              <button className="p-[1px] bg-white bg-opacity-20 rounded-lg">
+                <button type="button" className="p-3 hover:bg-blue-gray-100 rounded-lg">
+                  <RiInformationFill size={25} color="#f9f9f9" />
+                </button>
+              </button>
+            </Link>
 
-          <button onClick={handleAddToCollection} type="button" className="absolute right-0 top-0">
-            <button type="button" className="p-5 rounded-bl-xl rounded-tr-xl hover:bg-blue-gray-100">
-              <BsPlusCircleFill size={27} />
+            <button onClick={handleAddToCollection} type="button" className="p-[1px] bg-white bg-opacity-20 rounded-lg">
+              <button type="button" className="p-3 hover:bg-blue-gray-100 rounded-lg">
+                <BsPlusCircleFill size={25} color="#f9f9f9" />
+              </button>
             </button>
-          </button>
-        </>
-
-        <h2 className="text-xl font-bold ">{capitalizeFirstLetter(data.name)}</h2>
-        <img src={data.sprites.front_default} alt={data.name} className="w-full " />
+          </div>
+        </div>
       </div>
     </div>
   );

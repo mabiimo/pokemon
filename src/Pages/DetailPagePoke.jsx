@@ -6,9 +6,11 @@ import ContentPokeDetail from "../Components/PokeDetailPage/ContentPokeDetail";
 
 export default function PokeDetailPage() {
   return (
-    <div className="min-h-screen bg-[#262626]  p-10">
+    <div className="min-h-screen bg-[#262626]  ">
       <NavigationBar />
-      <ContentPokeDetail />
+      <div className="p-10">
+        <ContentPokeDetail />
+      </div>
       <Footer />
     </div>
   );
